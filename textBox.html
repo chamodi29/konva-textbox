@@ -34,7 +34,7 @@
       y: 80,
       fontSize: 20,
       fill: '#FF0000',
-      padding: 3,
+      padding:7,
       draggable: true,
       width: 160,
     });
@@ -113,10 +113,10 @@
       textarea.style.top = areaPosition.y + 'px';
       textarea.style.left = areaPosition.x + 'px';
       textarea.style.width = textNode.width() - textNode.padding() * 2 + 'px';
-      textarea.style.height = textNode.height() - textNode.padding() * 2 + 5 + 'px';
+      textarea.style.height = textNode.height() - textNode.padding() * 2  + 'px';
       textarea.style.fontSize = textNode.fontSize() + 'px';
       textarea.style.border = 'none';
-      textarea.style.padding = '3px';
+      textarea.style.padding = '7px';
       textarea.style.margin = '0px';
       textarea.style.overflow = 'hidden';
       textarea.style.background = 'none';
@@ -184,10 +184,12 @@
         if (e.keyCode === 13 && !e.shiftKey) {
           textNode.text(textarea.value);
           removeTextarea();
+          tr.hide();
         }
         // on esc do not set value back to node
         if (e.keyCode === 27) {
           removeTextarea();
+          tr.hide();
         }
       });
 
@@ -197,7 +199,16 @@
         textNode.text(textarea.value);
         textarea.style.height = 'auto';
         textarea.style.height = textarea.scrollHeight + textNode.fontSize() + 'px';
-        rect.setAttrs({ width: textNode.width() - textNode.padding() * 2, height: textNode.height() - textNode.padding() * 2 + 5 });
+        // rect.setAttrs({
+        //   width: textNode.width() - textNode.padding() * 2 + 15,
+        //   height: textNode.height() - textNode.padding() * 2 + 15
+        // });
+
+        rect.setAttrs({
+          width: textNode.width() + textNode.padding() * 2 + 2 ,
+          height: textNode.height() + textNode.padding() * 2 - 14
+        });
+
       });
 
       function handleOutsideClick(e) {
